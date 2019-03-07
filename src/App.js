@@ -1,11 +1,38 @@
 import React, { Component } from 'react';
+import {
+  Box,
+  Flex,
+  Card,
+  Image,
+  Heading,
+  Text
+} from 'rebass';
+import styled from 'styled-components'
 
+import { 
+  Address,
+  BaseContainer,
+  Button,
+  Footer,
+  Header,
+  Main,
+  Section
+ } from '@bit/sudosanto.itdev164.element'
 
+import { RecipeList } from './components/RecipeList'
+import { RecipeMain } from './components/RecipeMain'
+import { RecipeModal } from './components/RecipeModal'
+
+const StyledHeaderText = styled(Text)`
+    text-decoration: none;
+    font-weight: bold;
+ `
 
 class App extends Component {
 
   constructor(props) {
     super(props);
+    this.changeSelectedRecipe = this.changeSelectedRecipe.bind(this);
     this.state = {
       selectedRecipe: 1,
       recipes: [
@@ -48,12 +75,39 @@ class App extends Component {
     };
   }
 
+  changeSelectedRecipe(index) {
+    this.setState({
+      selectedRecipe: index
+    })
+  }
+
   render() {
-    const recipes = this.state.recipes;
+    const selectedRecipe = this.state.recipes.find((recipe) => 
+      recipe.index === this.state.selectedRecipe);
+
     return (
       <div>
-        Recipe App<br />
-        <p>{recipes[1].name}</p>
+        <Header mb={4}>
+          <StyledHeaderText textAlign='center' fontSize={5}>
+            Recipe App
+          </StyledHeaderText>
+        </Header>
+
+        <Main>
+          <Flex>
+            <RecipeMain recipe={selectedRecipe} />
+            <RecipeList 
+              recipes={this.state.recipes} 
+              selectRecipe={this.changeSelectedRecipe} />
+          </Flex>
+        </Main>
+
+        <Footer>
+
+        </Footer>
+
+        <RecipeModal />
+
       </div>
     );
   }
