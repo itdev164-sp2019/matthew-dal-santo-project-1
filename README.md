@@ -1,6 +1,8 @@
 
 # Recipe App
 
+It ain't pretty and it doesn't do everything I wanted it to do, but it's done and it meets the Project Requirements.
+
 ## Project Planning
 
 ### Story Board
