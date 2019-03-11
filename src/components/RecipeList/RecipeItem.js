@@ -4,9 +4,12 @@ import {
     Card,
     Image,
     Heading,
-    Text
+    Text,
+    Flex
   } from 'rebass'
 import styled from 'styled-components'
+import { Edit } from 'styled-icons/feather'
+
 import { 
     Address,
     BaseContainer,
@@ -27,10 +30,15 @@ class RecipeItem extends Component {
     render() {
         return (
             <Box>
-                <StyledRecipeName m={2} 
-                onClick={() => this.props.selectRecipe(this.props.index)}>
-                    {this.props.name}
-                </StyledRecipeName>
+                <Flex>
+                    <Flex width='1em'>
+                        <Edit size='1em' />
+                    </Flex>
+                    <StyledRecipeName m={2} 
+                    onClick={() => this.props.selectRecipe(this.props.index)}>
+                        {this.props.name}
+                    </StyledRecipeName>
+                </Flex>
             </Box>
         );      
     }

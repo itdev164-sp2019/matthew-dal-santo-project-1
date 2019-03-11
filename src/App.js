@@ -5,9 +5,12 @@ import {
   Card,
   Image,
   Heading,
-  Text
+  Text,
+  Modal,
+  Fixed
 } from 'rebass';
 import styled from 'styled-components'
+import Layout from "./layouts/layout"
 
 import { 
   Address,
@@ -23,18 +26,15 @@ import { RecipeList } from './components/RecipeList'
 import { RecipeMain } from './components/RecipeMain'
 import { RecipeModal } from './components/RecipeModal'
 
-const StyledHeaderText = styled(Text)`
-    text-decoration: none;
-    font-weight: bold;
- `
-
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.changeSelectedRecipe = this.changeSelectedRecipe.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
     this.state = {
       selectedRecipe: 1,
+      isModal: false,
       recipes: [
         {index: 1,
         name: "Mocha Chip Cookies",
@@ -81,34 +81,34 @@ class App extends Component {
     })
   }
 
+  toggleModal() {
+    this.setState({
+      isModal: !this.state.isModal
+    })
+  }
+
   render() {
     const selectedRecipe = this.state.recipes.find((recipe) => 
       recipe.index === this.state.selectedRecipe);
 
     return (
-      <div>
-        <Header mb={4}>
-          <StyledHeaderText textAlign='center' fontSize={5}>
-            Recipe App
-          </StyledHeaderText>
-        </Header>
+      <Layout>
 
-        <Main>
-          <Flex>
-            <RecipeMain recipe={selectedRecipe} />
-            <RecipeList 
-              recipes={this.state.recipes} 
-              selectRecipe={this.changeSelectedRecipe} />
-          </Flex>
-        </Main>
+        <Flex>
+          <RecipeMain recipe={selectedRecipe} />
+          <RecipeList 
+          recipes={this.state.recipes} 
+          selectRecipe={this.changeSelectedRecipe} />
+        </Flex>
 
-        <Footer>
+        {/* <RecipeModal 
+        isModal={this.state.isModal} />
 
-        </Footer>
+        <Button 
+        onClick={() => this.toggleModal()}
+        children='ToggleModal' /> */}
 
-        <RecipeModal />
-
-      </div>
+      </Layout>
     );
   }
 }

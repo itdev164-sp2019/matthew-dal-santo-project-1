@@ -23,7 +23,14 @@ export class RecipeList extends Component {
     render() {
         return (
             <Box width="30%" mt={4}>
-                <Text fontWeight='bolder' mb={2}>Recipe List</Text>
+
+                <Text 
+                fontWeight='bolder'
+                fontSize={3}
+                mb={2}>
+                    Recipe List
+                </Text>
+
                 {this.props.recipes.map(recipe => 
                     <RecipeItem 
                         index={recipe.index}

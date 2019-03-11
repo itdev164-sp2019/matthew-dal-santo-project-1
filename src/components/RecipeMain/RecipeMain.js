@@ -23,17 +23,41 @@ export class RecipeMain extends Component {
     render() {
         return (
             <Box width="70%" m={4}>
-                <Text fontWeight='bolder' mb={2}>{this.props.recipe.name}</Text>
+                <Text 
+                fontWeight='bolder' 
+                fontSize={4}
+                mb={2}>
+                    {this.props.recipe.name}
+                </Text>
 
-                <Text fontWeight='bold' my={2}>Ingredients</Text>
+                <Text fontWeight='bold' 
+                ml={2} 
+                my={2}>
+                    Ingredients
+                </Text>
+                
                 {this.props.recipe.ingredients.map(ingredient => 
-                    <Text mb={1} ml={1}>{ingredient}</Text>
+                    <Text 
+                    mb={1} 
+                    ml={3}>
+                        {ingredient}
+                    </Text>
                 )
                 }
 
-                <Text fontWeight='bold' my={2}>Instructions</Text>
+                <Text 
+                fontWeight='bold' 
+                ml={2} 
+                my={2}>
+                    Instructions
+                </Text>
+
                 {this.props.recipe.instructions.map(instruction => 
-                    <Text mb={1} ml={1}>{instruction}</Text>
+                    <Text 
+                    mb={1} 
+                    ml={3}>
+                        {instruction}
+                    </Text>
                 )
                 }
 
